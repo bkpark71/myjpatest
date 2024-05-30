@@ -27,7 +27,7 @@ public class DepartmentTest {
             // AI 키가 없는 테이블은 commit시에 SQL이 실행된다.
             tx.commit();
             System.out.println("커밋 후");
-        }catch(Exception e){
+        } catch(Exception e){
             tx.rollback();
         }
     }

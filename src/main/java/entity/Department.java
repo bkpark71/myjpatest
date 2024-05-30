@@ -23,6 +23,7 @@ public class Department {
     @OneToMany(mappedBy = "department")
     private List<Employee> employees;
 
+
     public List<Employee> addNewEmployee(Employee employee) {
        if(employees == null) {
            employees = new ArrayList<>();

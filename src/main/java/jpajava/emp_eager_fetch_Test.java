@@ -8,27 +8,28 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
-public class Dept_Emp_test {
+public class emp_eager_fetch_Test {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpatest");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
-
+        //양방향 연관관계 테스트
         tx.begin();
         try{
-            Department department = new Department();
-            department.setDeptName("HR");
-            em.persist(department); // insert ==> dept_id
-            System.out.println("department created");
-            Employee employee = new Employee("202401", "test1", department, EmpType.A, "2024-05-30", 300L, null);
-            em.persist(employee); // 지연쓰기 ==> commit
-            System.out.println("employee created");
-            System.out.println(employee.getDepartment().getDeptId() + ": " + employee.getDepartment().getDeptName());
+            System.out.println("트랜잭션 시작");
+            List<Employee> empList = em.createQuery("select e from Employee e", Employee.class).getResultList();
+            System.out.println("DB에서 가져옴");
+            for (Employee emp : empList) {
+                System.out.println(emp.getEmpId() + ":" + emp.getEmpName());
+                System.out.println(emp.getDepartment().getDeptName());
+            }
             tx.commit();
             System.out.println("commit");
         } catch (Exception e){
             tx.rollback();
         }
     }
+
 }

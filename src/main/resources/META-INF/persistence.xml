@@ -20,7 +20,7 @@
       <!-- Comment 확인 여부 -->
       <property name="hibernate.use_sql_comments" value="true"/>
       <!-- 테이블 생성 옵션 create / create-drop / validate / update / none -->
-      <property name="hibernate.hbm2ddl.auto" value="none"/>
+      <property name="hibernate.hbm2ddl.auto" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>

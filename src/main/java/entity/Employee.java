@@ -17,7 +17,7 @@ public class Employee {
     @Column(name="emp_name", nullable=false, length=20)
     private String empName;
     // 단방향 다대일 연관관계 설정
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) // default = EAGER(즉시로딩), LAZY(지연로딩)
     @JoinColumn(name="dept_id")
     private Department department;
     @Enumerated(EnumType.STRING)
@@ -26,6 +26,8 @@ public class Employee {
     @Column(name="join_date", length = 10)
     private String joinDate;
     private Long salary;
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "employee")
+    private Equipment equipment;
 
     @Override
     public String toString() {

@@ -23,9 +23,9 @@ public class Dept_emp_double_Test {
             department.setEmployees(null);
             em.persist(department); // insert ==> dept_id
             System.out.println("department created with no employees");
-            Employee employee = new Employee("202407", "test1", department, EmpType.A, "2024-05-29", 300L);
+            Employee employee = new Employee("202407", "test1", department, EmpType.A, "2024-05-29", 300L,null);
             em.persist(employee);
-            Employee employee1 = new Employee("202408", "test2", department, EmpType.A, "2024-05-30", 300L);
+            Employee employee1 = new Employee("202408", "test2", department, EmpType.A, "2024-05-30", 300L,null);
             em.persist(employee1); // 지연쓰기 ==> commit
             System.out.println("employee, employee1 created");
             department.addNewEmployee(employee);
